@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  background-color: rgb(5, 146, 18);
+  height: 59px;
+  width: 100%;
+  display: flex;
+  align-items: center;   
+}
+
+.texto_nav {
+  position: absolute;
+  padding-left: 15px;
+  background: transparent;
+  color: white;
+  font-size: 25px;
+  font-family: Verdana;
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.containerPai{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 59px) ;
+  width: 100%;
+  gap: 30px;
+  background-image: url('../img/green-soybeans-2.jpg');
+  background-size: cover;       /* Faz a imagem cobrir toda a área */
+  background-repeat: no-repeat; /* Evita repetição */
+  background-position: center;  /* Centraliza a imagem */
+}
+
+.containerOne{
+  width: 40%;
+  height: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:rgb(246, 248, 213);
+  border-radius: 12px;
+
+}
+
+.formPropriedade{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.containerTwo{
+  width: 45%;
+  height: 98%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(246, 248, 213);
+  border-radius: 12px;
+
+}
