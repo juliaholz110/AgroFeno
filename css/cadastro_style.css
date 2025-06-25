@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +18,8 @@
   background: transparent;
   color: white;
   font-size: 25px;
-  font-family: Verdana;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
   font-weight: bold;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
@@ -41,25 +43,119 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:rgb(246, 248, 213);
-  border-radius: 12px;
+
 
 }
 
-.formPropriedade{
+
+.formPropriedade {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 25px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: auto;
+}
+
+.formPropriedade label {
+    font-weight: 600;
+    color: #2e7d32;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+}
+
+.formPropriedade input:focus,
+.formPropriedade select:focus {
+    border-color: #4CAF50;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Inputs e select */
+.formPropriedade input,
+.formPropriedade select {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    transition: border-color 0.3s ease;
+    color: #2e7d32;
+}
+
+.opcoes{
+  font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #2e7d32;
+}
+
+/* Texto sobre a Soja (inicialmente escondido) */
+#infoSoja {
+    display: none; /* visibilidade controlada via JS */
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e8f5e9;
+    border-left: 5px solid #4CAF50;
+    border-radius: 5px;
+    color: #2e7d32;
+    font-size: 14px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+/* Estilo geral da container */
+#resultadoContainer {
+    width: 45%;
+  height: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.containerTwo{
-  width: 45%;
-  height: 98%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: rgb(246, 248, 213);
   border-radius: 12px;
-
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+h1{
+  color: #2e7d32;
+  padding: 10px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Cada par título/valor */
+#resultadoContainer p {
+    margin: 5px 0;
+    padding: 5px 10px;
+}
+
+/* Título de campo */
+.label{
+    font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+    color: #2e7d32;
+    background-color: #e8f5e9;
+    border-radius:25px;
+}
+
+/* Valor do campo */
+.resp {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+    color: #333;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 15px;
+    color: #2e7d32;
+} 

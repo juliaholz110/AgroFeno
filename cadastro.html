@@ -6,41 +6,168 @@
     <title>Bem Vindo</title>
     <link rel="stylesheet" href="css/cadastro_style.css">
     <div class="nav">
-        <div class="texto_nav" >AgroFeno</div>
+        <div class="texto_nav">AgroFeno</div>
     </div>
 </head>
 <body>
 
 <div class="containerPai">
     <div class="containerOne">
-        <form action="" class="formPropriedade" onsubmit="return false;">
-            <label for="">Digite o nome da sua propriedade:</label>
-            <input type="text" name="nomePropriedade" id="nomePropriedade">
+    <form action="" class="formPropriedade" onsubmit="return false;">
+        <h1>Cadastro da propriedade</h1>
+        <label for="nomePropriedade">Digite o nome da sua propriedade:</label>
+        <input type="text" name="nomePropriedade" id="nomePropriedade">
 
-            <label for="">Digite a data atual:</label>
-            <input type="date" name="diaAtual" id="diaAtual">
+        <label for="posEmergencia">Digite quantos dias após a emergência:</label>
+        <input type="number" name="diasPosEmergencia" id="posEmergencia">
 
-            <label for="">Digite quantos dias após a emergência:</label>
-            <input type="number" name="diasPosEmergencia" id="posEmergencia">
-
-            <button type="button" onclick="mostrarResultados()">Mostrar Resultados</button>
-        </form>
-    </div>
-    <div class="containerTwo"></div>
+        <label for="opcaoSelecao">Escolha a planta que você deseja ver o estádio fenológico:</label>
+        <select id="opcaoSelecao" onchange="executarOpcao()">
+            <option class="opcoes" value=""> Selecione </option>
+            <option class="opcoes" value="Soja">Soja</option>
+            <option  class="opcoes"value="Trigo">Trigo</option>
+            <option  class="opcoes"value="Milho">Milho</option>
+        </select>
+        <div id="infoSoja">
+        <p><strong>Sobre a Soja:</strong> A soja é uma das culturas mais importantes no Brasil, amplamente utilizada para alimentação humana, ração animal e produção de óleo. Entender seus estádios fenológicos ajuda no manejo adequado e no aumento da produtividade.</p>
+    </div> 
+    </form>
+</div>
+    <div class="containerTwo" id="resultadoContainer">
+        <h1>Análise</h1>
+    <p class="label">Nome da Propriedade:</p>
+    <p class="resp" id="resNome"></p>
+    <p class="label">Dias após a emergência:</p>
+    <p class="resp" id="resDias"></p>
+    <p class="label">Descrição:</p>
+    <p class="resp" id="resDescricao"></p>
+    <p class="label">Estadio:</p>
+    <p class="resp" id="resEstadio"></p>
+    <p class="label">Manejo:</p>
+    <p class="resp" id="resManejo"></p>
+</div>
 </div>
 
-
-
 <script>
+function executarOpcao() {
+    const nome = document.getElementById("nomePropriedade").value;
+    const dias = parseInt(document.getElementById("posEmergencia").value);
+    const opcao = document.getElementById("opcaoSelecao").value;
+    const infoSoja = document.getElementById("infoSoja");
 
+    const resNome = document.getElementById("resNome");
+    const resDias = document.getElementById("resDias");
+    const resDescricao = document.getElementById("resDescricao");
+    const resEstadio = document.getElementById("resEstadio");
+    const resManejo = document.getElementById("resManejo");
+
+    // Limpa tudo se não for soja
+    if (opcao !== "Soja") {
+        infoSoja.style.display = "none";
+        resNome.textContent = "";
+        resDias.textContent = "";
+        resDescricao.textContent = "";
+        resEstadio.textContent = "";
+        resManejo.textContent = "";
+        return;
+    }
+
+    infoSoja.style.display = "block";
+
+    let descricao = "";
+    let estadio = "";
+    let manejo = "";
+
+    if (dias >= 0 && dias <= 4) {
+        descricao = "Emergência";
+        estadio = "VE";
+    } else if (dias >= 5 && dias <= 7) {
+        descricao = "Cotilédones abertos";
+        estadio = "VC";
+    } else if (dias >= 8 && dias <= 10) {
+        descricao = "Primeiro nó";
+        estadio = "V1";
+    } else if (dias >= 11 && dias <= 13) {
+        descricao = "Segundo nó";
+        estadio = "V2";
+    } else if (dias >= 14 && dias <= 16) {
+        descricao = "Terceiro nó";
+        estadio = "V3";
+    } else if (dias >= 17 && dias <= 20) {
+        descricao = "Quarto nó";
+        estadio = "V4";
+    } else if (dias >= 21 && dias <= 24) {
+        descricao = "Quinto nó";
+        estadio = "V5";
+    } else if (dias >= 25 && dias <= 27) {
+        descricao = "Sexto nó";
+        estadio = "V6";
+    } else if (dias >= 28 && dias <= 30) {
+        descricao = "Sétimo nó";
+        estadio = "V7";
+    } else if (dias >= 31 && dias <= 34) {
+        descricao = "Oitavo nó";
+        estadio = "V8";
+    } else if (dias >= 35 && dias <= 39) {
+        descricao = "Início do florescimento";
+        estadio = "R1";
+        manejo = "Aplicação de fungicidas, controle de doenças.";
+    } else if (dias >= 40 && dias <= 46) {
+        descricao = "Florescimento pleno";
+        estadio = "R2";
+        manejo = "Aplicação de fungicidas, controle de doenças.";
+    } else if (dias >= 47 && dias <= 53) {
+        descricao = "Formação de vagens";
+        estadio = "R3";
+        manejo = "Aplicação de fungicidas, controle de doenças e atenção com pragas (percevejo, lagartas).";
+    } else if (dias >= 54 && dias <= 59) {
+        descricao = "Vagens desenvolvidas";
+        estadio = "R4";
+        manejo = "Atenção com pragas (percevejo, lagartas).";
+    } else if (dias >= 60 && dias <= 67) {
+        descricao = "Início do enchimento de grãos";
+        estadio = "R5.1";
+        manejo = "Atenção com pragas e controle de percevejos.";
+    } else if (dias >= 68 && dias <= 74) {
+        descricao = "Meio enchimento dos grãos";
+        estadio = "R5.5";
+        manejo = "Atenção com pragas e controle de percevejos.";
+    } else if (dias >= 75 && dias <= 89) {
+        descricao = "Grão cheio";
+        estadio = "R6";
+        manejo = "Controle de percevejos, enchimento de grãos.";
+    } else if (dias >= 90 && dias <= 109) {
+        descricao = "Início da maturação";
+        estadio = "R7";
+        manejo = "Monitoramento para colheita.";
+    } else if (dias === 110) {
+        descricao = "Maturação fisiológica";
+        estadio = "R8";
+        manejo = "Monitoramento para colheita.";
+    } else {
+        resNome.textContent = "";
+        resDias.textContent = "";
+        resDescricao.textContent = "";
+        resEstadio.textContent = "";
+        resManejo.textContent = "";
+        alert("Número de dias inválido para a cultura da Soja.");
+        return;
+    }
+
+    // Preenche os <p> com os dados
+    resNome.textContent = nome;
+    resDias.textContent = dias;
+    resDescricao.textContent = descricao;
+    resEstadio.textContent = estadio;
+    resManejo.textContent = manejo || "Nenhum manejo específico.";
+}
+
+// Oculta a seção infoSoja ao carregar
+window.onload = function () {
+    document.getElementById("infoSoja").style.display = "none";
+};
 </script>
-
-
-
-
-
 
 
 </body>
 </html>
-
