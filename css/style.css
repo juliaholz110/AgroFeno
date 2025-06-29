@@ -28,7 +28,8 @@
     color: white;
     padding: 10px 0;
     font-size: 60px;
-    font-family: Verdana;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
     font-weight: bold;
     padding-bottom: 90px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
@@ -40,7 +41,9 @@
     width: 100%;
     text-align: center;
     background: transparent;
-    font-family: Verdana;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
     color: white;
     padding: 10px 0;
     font-size: 35px;
@@ -54,7 +57,7 @@
   /*baixo*/
 
   .container{
-    height: 20%; 
+    height: 16.9%; 
     width: 100%;
     background-color:rgb(5, 146, 18);
     display: flex;
@@ -68,14 +71,18 @@
     border-radius: 40px;
     background-color: white;
     border-color: white;
-    font-family: Verdana;
-    font-size: 20px;
     font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-size: 25px;
     color: rgb(5, 146, 18);
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    cursor: pointer;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* sombra aqui */
+      transition: box-shadow 0.3s ease;
   }
 
   

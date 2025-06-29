@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="css/cadastro_style.css">
     <div class="nav">
         <div class="texto_nav">AgroFeno</div>
+        <div class="textoCulturasVerão">Principais Culturas de Verão</div>
+        <div class="trio">
+            <a href="">Soja</a>
+            <a href="">Milho</a>
+        </div>
     </div>
 </head>
 <body>
@@ -14,7 +19,9 @@
 <div class="containerPai">
     <div class="containerOne">
     <form action="" class="formPropriedade" onsubmit="return false;">
-        <h1>Cadastro da propriedade</h1>
+        <div class="centralizadorTitulo">
+            <h1>Cadastro da propriedade
+        </h1></div>
         <label for="nomePropriedade">Digite o nome da sua propriedade:</label>
         <input type="text" name="nomePropriedade" id="nomePropriedade">
 
@@ -25,26 +32,36 @@
         <select id="opcaoSelecao" onchange="executarOpcao()">
             <option class="opcoes" value=""> Selecione </option>
             <option class="opcoes" value="Soja">Soja</option>
-            <option  class="opcoes"value="Trigo">Trigo</option>
             <option  class="opcoes"value="Milho">Milho</option>
         </select>
         <div id="infoSoja">
         <p><strong>Sobre a Soja:</strong> A soja é uma das culturas mais importantes no Brasil, amplamente utilizada para alimentação humana, ração animal e produção de óleo. Entender seus estádios fenológicos ajuda no manejo adequado e no aumento da produtividade.</p>
     </div> 
+    <div id="infoMilho">
+        <p><strong>Sobre o Milho:</strong> Milhooooooooooooooooooooooooooooooooooo</p>
+    </div> 
     </form>
 </div>
     <div class="containerTwo" id="resultadoContainer">
+        <div class="subContainerTwo">
+            <div class="centralizadorTitulo">
         <h1>Análise</h1>
+        </div>
     <p class="label">Nome da Propriedade:</p>
     <p class="resp" id="resNome"></p>
+    <hr class="linha">
     <p class="label">Dias após a emergência:</p>
     <p class="resp" id="resDias"></p>
+    <hr class="linha">
     <p class="label">Descrição:</p>
     <p class="resp" id="resDescricao"></p>
-    <p class="label">Estadio:</p>
+    <hr class="linha">
+    <p class="label">Estádio:</p>
     <p class="resp" id="resEstadio"></p>
+    <hr class="linha">
     <p class="label">Manejo:</p>
     <p class="resp" id="resManejo"></p>
+    </div>
 </div>
 </div>
 
@@ -53,30 +70,30 @@ function executarOpcao() {
     const nome = document.getElementById("nomePropriedade").value;
     const dias = parseInt(document.getElementById("posEmergencia").value);
     const opcao = document.getElementById("opcaoSelecao").value;
-    const infoSoja = document.getElementById("infoSoja");
 
+    // Referências para Soja
+    const infoSoja = document.getElementById("infoSoja");
     const resNome = document.getElementById("resNome");
     const resDias = document.getElementById("resDias");
     const resDescricao = document.getElementById("resDescricao");
     const resEstadio = document.getElementById("resEstadio");
     const resManejo = document.getElementById("resManejo");
-
-    // Limpa tudo se não for soja
-    if (opcao !== "Soja") {
-        infoSoja.style.display = "none";
-        resNome.textContent = "";
-        resDias.textContent = "";
-        resDescricao.textContent = "";
-        resEstadio.textContent = "";
-        resManejo.textContent = "";
-        return;
-    }
-
-    infoSoja.style.display = "block";
-
-    let descricao = "";
-    let estadio = "";
-    let manejo = "";
+    const infoMilho = document.getElementById("infoMilho");
+    // // Referências para Milho
+   
+    // Resetar tudo
+    infoSoja.style.display = "none";
+    infoMilho.style.display = "none";
+    resNome.textContent = "";
+    resDias.textContent = "";
+    resDescricao.textContent = "";
+    resEstadio.textContent = "";
+    resManejo.textContent = "";
+    
+   //Condição da soja
+    if (opcao === "Soja") {
+       infoSoja.style.display = "block";
+        let descricao = "", estadio = "", manejo = "";
 
     if (dias >= 0 && dias <= 4) {
         descricao = "Emergência";
@@ -155,16 +172,135 @@ function executarOpcao() {
     }
 
     // Preenche os <p> com os dados
-    resNome.textContent = nome;
-    resDias.textContent = dias;
-    resDescricao.textContent = descricao;
-    resEstadio.textContent = estadio;
-    resManejo.textContent = manejo || "Nenhum manejo específico.";
+        resNome.textContent = nome;
+        resDias.textContent = dias;
+        resDescricao.textContent = descricao;
+        resEstadio.textContent = estadio;
+        resManejo.textContent = manejo || "Nenhum manejo específico.";
+        return;
+    }
+
+//Condição do milho
+ if (opcao === "Milho") {
+        infoMilho.style.display = "block";
+        let descricao = "", estadio = "", manejo = "";
+
+        if (dias >= 0 && dias <= 5) {
+            descricao = "Emergência";
+            estadio = "VE";
+            manejo = "Verificar a emergência uniforme - Monitorar pragas iniciais (lagarta, percevejo) - Avaliar necessidade de replantio.";
+        } else if (dias >= 6 && dias <= 9) {
+            descricao = "1ª folha com colar visível";
+            estadio = "V1";
+            manejo = "Controle de plantas daninhas (herbicidas) - Monitorar pragas iniciais - Corrigir falhas na população.";
+        } else if (dias >= 10 && dias <= 12) {
+            descricao = "2ª folha com colar visível";
+            estadio = "V2";
+            manejo = "Controle de plantas daninhas (herbicidas) - Monitorar pragas iniciais - Corrigir falhas na população.";
+        } else if (dias >= 13 && dias <= 15) {
+            descricao = "3ª folha com colar visível";
+            estadio = "V3";
+            manejo = "Controle de plantas daninhas (herbicidas) - Monitorar pragas iniciais - Corrigir falhas na população.";
+        } else if (dias >= 16 && dias <= 18) {
+            descricao = "4ª folha com colar visível";
+            estadio = "V4";
+            manejo = "1ª adubação de cobertura com nitrogênio - Controle de daninhas e pragas - Avaliar doenças iniciais - Aplicar fungicida se necessário.";
+        } else if (dias >= 19 && dias <= 21) {
+            descricao = "5ª folha com colar visível";
+            estadio = "V5";
+            manejo = "1ª adubação de cobertura com nitrogênio - Controle de daninhas e pragas - Avaliar doenças iniciais - Aplicar fungicida se necessário.";
+        } else if (dias >= 22 && dias <= 24) {
+            descricao = "6ª folha com colar visível";
+            estadio = "V6";
+            manejo = "1ª adubação de cobertura com nitrogênio - Controle de daninhas e pragas - Avaliar doenças iniciais - Aplicar fungicida se necessário.";
+        } else if (dias >= 25 && dias <= 27) {
+            descricao = "7ª folha com colar visível";
+            estadio = "V7";
+            manejo = "Alta demanda por nitrogênio e água - 2ª aplicação de N (se fracionada) - Monitorar doenças - Aplicação preventiva de fungicida.";
+        } else if (dias >= 28 && dias <= 30) {
+            descricao = "8ª folha com colar visível";
+            estadio = "V8";
+            manejo = "Alta demanda por nitrogênio e água - 2ª aplicação de N (se fracionada) - Monitorar doenças - Aplicação preventiva de fungicida.";
+        } else if (dias >= 31 && dias <= 33) {
+            descricao = "9ª folha com colar visível";
+            estadio = "V9";
+            manejo = "Alta demanda por nitrogênio e água - 2ª aplicação de N (se fracionada) - Monitorar doenças - Aplicação preventiva de fungicida.";
+        } else if (dias >= 34 && dias <= 36) {
+            descricao = "10ª folha com colar visível";
+            estadio = "V10";
+            manejo = "Alta demanda por nitrogênio e água - 2ª aplicação de N (se fracionada) - Monitorar doenças - Aplicação preventiva de fungicida.";
+        } else if (dias >= 37 && dias <= 39) {
+            descricao = "11ª folha com colar visível";
+            estadio = "V11";
+            manejo = "Atenção à pressão de doenças - Aplicar fungicidas se houver risco alto - Monitorar pragas - Irrigação se necessário.";
+        } else if (dias >= 40 && dias <= 42) {
+            descricao = "12ª folha com colar visível";
+            estadio = "V12";
+            manejo = "Atenção à pressão de doenças - Aplicar fungicidas se houver risco alto - Monitorar pragas - Irrigação se necessário.";
+        } else if (dias >= 43 && dias <= 45) {
+            descricao = "13ª folha com colar visível";
+            estadio = "V13";
+            manejo = "Atenção à pressão de doenças - Aplicar fungicidas se houver risco alto - Monitorar pragas - Irrigação se necessário.";
+        } else if (dias >= 46 && dias <= 48) {
+            descricao = "14ª folha com colar visível";
+            estadio = "V14";
+            manejo = "Atenção à pressão de doenças - Aplicar fungicidas se houver risco alto - Monitorar pragas - Irrigação se necessário.";
+        } else if (dias >= 49 && dias <= 51) {
+            descricao = "15ª folha com colar visível";
+            estadio = "V15";
+            manejo = "Atenção à pressão de doenças - Aplicar fungicidas se houver risco alto - Monitorar pragas - Irrigação se necessário.";
+        } else if (dias >= 52 && dias <= 54) {
+            descricao = "Última folha com colar visível antes do VT";
+            estadio = "V16";
+            manejo = "Atenção à pressão de doenças - Aplicar fungicidas se houver risco alto - Monitorar pragas - Irrigação se necessário.";
+        } else if (dias >= 55 && dias <= 64) {
+            descricao = "Pendoamento completo";
+            estadio = "VT";
+            manejo = "Aplicação estratégica de fungicida - Monitoramento rigoroso de pragas - Irrigação crítica - Aplicação foliar de micronutriente.";
+        } else if (dias >= 65 && dias <= 69) {
+            descricao = "Florescimento/Emissão de estigmas";
+            estadio = "R1";
+            manejo = "Aplicar fungicidas protetores - Altamente sensível à deficiência hídrica - Monitoramento de doenças e pragas - Bioestimulantes (se necessário).";
+        } else if (dias >= 70 && dias <= 84) {
+            descricao = "Grão leitoso";
+            estadio = "R2";
+            manejo = "Monitoramento de estresse hídrico - Prevenir podridão da espiga - Proteção fitossanitária contínua.";
+        } else if (dias >= 85 && dias <= 94) {
+            descricao = "Grão pastoso";
+            estadio = "R3";
+            manejo = "Manter sanidade foliar - Acompanhar enchimento de grãos - Reduzir estresse hídrico.";
+        } else if (dias >= 95 && dias <= 104) {
+            descricao = "Grão farináceo";
+            estadio = "R4";
+            manejo = "Preparar colheita - Observar doenças fúngicas tardias.";
+        } else if (dias >= 105 && dias <= 114) {
+            descricao = "Grão dentado";
+            estadio = "R5";
+            manejo = "Avaliar ponto ideal de colheita - Monitorar umidade dos grãos.";
+        } else if (dias >= 115 && dias <= 130) {
+            descricao = "Maturidade fisiológica";
+            estadio = "R6";
+            manejo = "Colheita no ponto ideal (ponto preto) - Secagem e armazenamento adequado - Avaliar produtividade.";
+        } else {
+            alert("Número de dias inválido para a cultura do Milho.");
+            return;
+        }
+
+        // Preencher resultados para milho
+        resNome.textContent = nome;
+        resDias.textContent = dias;
+        resDescricao.textContent = descricao;
+        resEstadio.textContent = estadio;
+        resManejo.textContent = manejo || "Nenhum manejo específico.";
+        return;
+    }
+
 }
 
 // Oculta a seção infoSoja ao carregar
 window.onload = function () {
     document.getElementById("infoSoja").style.display = "none";
+    document.getElementById("infoMilho").style.display = "none";
 };
 </script>
 
